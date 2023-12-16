@@ -1,6 +1,7 @@
 using CSharpSelFramework.PageObjects;
 using CSharpSelFramework.Utilities;
 using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests
 {
@@ -9,9 +10,24 @@ namespace CSharpSelFramework.Tests
         [Test]
         public void Test1()
         {
+            String[] expectedProducts = { "iphone X", "Blackberry" };
+            String[] actualProducts = new string[2];
+
             LoginPage loginPage = new LoginPage(getDriver());
 
-            loginPage.validLogin("user1", "password123");
+            ProductsPage productPage = loginPage.validLogin("rahulshettyacademy", "learning");
+            //productPage.waitForPageDisplay();
+
+            IList<IWebElement> products = productPage.getCards();
+
+            foreach (IWebElement product in products)
+            {
+                if (expectedProducts.Contains(product.FindElement(productPage.getCardTitle()).Text))
+                {
+                    product.FindElement(By.CssSelector(".card-footer button")).Click();
+                }
+                TestContext.Progress.WriteLine(product.FindElement(By.CssSelector(".card-title a")).Text);
+            }
         }
     }
 }

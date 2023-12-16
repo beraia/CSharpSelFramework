@@ -32,22 +32,25 @@ namespace CSharpSelFramework.PageObjects
         private IWebElement signIn;
 
 
-        public void validLogin(string user, string pass)
+        public ProductsPage validLogin(string user, string pass)
         {
             username.SendKeys(user);
             password.SendKeys(pass);
             checkbox.Click();
             signIn.Click();
+
+            return new ProductsPage(_driver);
         }
 
-        public IWebElement getUserName()
-        {
-            return username;
-        }
 
-        public IWebElement getPassword()
-        {
-            return password;
-        }
+        //public IWebElement getUserName()
+        //{
+        //    return username;
+        //}
+
+        //public IWebElement getPassword()
+        //{
+        //    return password;
+        //}
     }
 }
