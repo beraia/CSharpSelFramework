@@ -1,6 +1,7 @@
 using CSharpSelFramework.PageObjects;
 using CSharpSelFramework.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests
@@ -16,7 +17,8 @@ namespace CSharpSelFramework.Tests
             LoginPage loginPage = new LoginPage(getDriver());
 
             ProductsPage productPage = loginPage.validLogin("rahulshettyacademy", "learning");
-            //productPage.waitForPageDisplay();
+            productPage.weitForPageDisplay();
+
 
             IList<IWebElement> products = productPage.getCards();
 
@@ -24,10 +26,26 @@ namespace CSharpSelFramework.Tests
             {
                 if (expectedProducts.Contains(product.FindElement(productPage.getCardTitle()).Text))
                 {
-                    product.FindElement(By.CssSelector(".card-footer button")).Click();
+                    product.FindElement(productPage.addToCartButton()).Click();
                 }
                 TestContext.Progress.WriteLine(product.FindElement(By.CssSelector(".card-title a")).Text);
             }
+
+            //productPage.checkout();
+            CheckoutPage checkoutpage = productPage.checkout();
+
+
+            //IList<IWebElement> checkoutCards = driver.FindElements(By.CssSelector("h4 a"));
+            IList<IWebElement> checkoutCards = checkoutpage.getCards();
+
+            //for (int i = 0; i < checkoutCards.Count; i++)
+            //{
+            //    actualProducts[i] = checkoutCards[i].Text;
+            //}
+
+            //Assert.AreEqual(expectedProducts, actualProducts);
+            driver.FindElement(By.CssSelector(".btn-success")).Click();
+            //checkoutpage.checkOut();
         }
     }
 }

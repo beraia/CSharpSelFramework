@@ -41,16 +41,5 @@ namespace CSharpSelFramework.PageObjects
 
             return new ProductsPage(_driver);
         }
-
-
-        //public IWebElement getUserName()
-        //{
-        //    return username;
-        //}
-
-        //public IWebElement getPassword()
-        //{
-        //    return password;
-        //}
     }
 }
