@@ -2,12 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace CSharpSelFramework.Utilities
@@ -57,7 +52,7 @@ namespace CSharpSelFramework.Utilities
         [TearDown] 
         public void AfterTest()
         {
-            _driver.Quit();
+            //_driver.Quit();
         }
 
     }

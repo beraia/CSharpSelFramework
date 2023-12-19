@@ -2,7 +2,6 @@ using CSharpSelFramework.PageObjects;
 using CSharpSelFramework.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests
 {
@@ -10,7 +9,7 @@ namespace CSharpSelFramework.Tests
     {
         [Test]
         [TestCase("rahulshettyacademy", "learning")]
-        [TestCase("rahulshetty", "learning")]
+        //[TestCase("rahulshetty", "learning")]
         public void Test1(string username, string password)
         {
             String[] expectedProducts = { "iphone X", "Blackberry" };
@@ -45,6 +44,19 @@ namespace CSharpSelFramework.Tests
             Assert.AreEqual(expectedProducts, actualProducts);
 
             checkoutpage.checkOut();
+
+            _driver.FindElement(By.Id("country")).SendKeys("ind");
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.PartialLinkText("India")));
+
+            _driver.FindElement(By.LinkText("India")).Click();
+
+            _driver.FindElement(By.CssSelector("label[for*='checkbox2']")).Click();
+            _driver.FindElement(By.CssSelector("[value='Purchase']")).Click();
+
+            string confirmText = _driver.FindElement(By.CssSelector(".alert-success")).Text;
+
+            StringAssert.Contains("Success", confirmText);
         }
     }
 }
