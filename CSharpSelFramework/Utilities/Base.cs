@@ -14,7 +14,7 @@ namespace CSharpSelFramework.Utilities
 {
     public class Base
     {
-        public IWebDriver driver;
+        public IWebDriver _driver;
         [SetUp]
 
         public void StartBrowser()
@@ -24,15 +24,15 @@ namespace CSharpSelFramework.Utilities
             String browserName = ConfigurationManager.AppSettings["browser"];
             InitBrowser(browserName);
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
-            driver.Manage().Window.Maximize();
-            driver.Url = "https://rahulshettyacademy.com/loginpagePractise/";
+            _driver.Manage().Window.Maximize();
+            _driver.Url = "https://rahulshettyacademy.com/loginpagePractise/";
         }
 
         public IWebDriver getDriver()
         {
-            return driver;
+            return _driver;
         }
 
         public void InitBrowser(string browserName)
@@ -41,14 +41,14 @@ namespace CSharpSelFramework.Utilities
             {
                 case "Firefox":
                     new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
-                    driver = new FirefoxDriver();
+                    _driver = new FirefoxDriver();
                     break;
                 case "Chrome":
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    driver = new ChromeDriver();
+                    _driver = new ChromeDriver();
                     break;
                 case "Edge":
-                    driver = new EdgeDriver();
+                    _driver = new EdgeDriver();
                     break;
 
             }
@@ -57,7 +57,7 @@ namespace CSharpSelFramework.Utilities
         [TearDown] 
         public void AfterTest()
         {
-            //driver.Quit();
+            _driver.Quit();
         }
 
     }
