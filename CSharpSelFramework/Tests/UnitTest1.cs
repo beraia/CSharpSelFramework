@@ -62,9 +62,9 @@ namespace CSharpSelFramework.Tests
 
         public static IEnumerable<TestCaseData> AddTestDataConfig()
         {
-            yield return new TestCaseData("rahulshettyacademy", "learning");
-            yield return new TestCaseData("rahulshetty", "learning");
-            yield return new TestCaseData("shettyacademy", "learning");
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"));
+            yield return new TestCaseData(getDataParser().extractData("username_wrong"), getDataParser().extractData("password_wrong"));
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"));
         }
     }
 }
