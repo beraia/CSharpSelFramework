@@ -8,8 +8,10 @@ namespace CSharpSelFramework.Tests
     public class Tests : Base
     {
         [Test]
-        [TestCase("rahulshettyacademy", "learning")]
+        //[TestCase("rahulshettyacademy", "learning")]
         //[TestCase("rahulshetty", "learning")]
+
+        [TestCaseSource("AddTestDataConfig")]
         public void Test1(string username, string password)
         {
             String[] expectedProducts = { "iphone X", "Blackberry" };
@@ -57,6 +59,13 @@ namespace CSharpSelFramework.Tests
             string confirmText = _driver.FindElement(By.CssSelector(".alert-success")).Text;
 
             StringAssert.Contains("Success", confirmText);
+        }
+
+        public static IEnumerable<TestCaseData> AddTestDataConfig()
+        {
+            yield return new TestCaseData("rahulshettyacademy", "learning");
+            yield return new TestCaseData("rahulshetty", "learning");
+            yield return new TestCaseData("shettyacademy", "learning");
         }
     }
 }
