@@ -7,11 +7,10 @@ namespace CSharpSelFramework.Tests
 {
     public class Tests : Base
     {
-        [Test]
+        [Test, TestCaseSource("AddTestDataConfig")]
         //[TestCase("rahulshettyacademy", "learning")]
         //[TestCase("rahulshetty", "learning")]
 
-        [TestCaseSource("AddTestDataConfig")]
         public void Test1(string username, string password)
         {
             String[] expectedProducts = { "iphone X", "Blackberry" };
