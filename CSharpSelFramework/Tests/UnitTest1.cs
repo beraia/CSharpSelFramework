@@ -11,9 +11,9 @@ namespace CSharpSelFramework.Tests
         //[TestCase("rahulshettyacademy", "learning")]
         //[TestCase("rahulshetty", "learning")]
 
-        public void Test1(string username, string password)
+        public void Test1(string username, string password, String[] expectedProducts)
         {
-            String[] expectedProducts = { "iphone X", "Blackberry" };
+            //String[] expectedProducts = { "iphone X", "Blackberry" };
             String[] actualProducts = new string[2];
 
             LoginPage loginPage = new LoginPage(getDriver());
@@ -62,9 +62,9 @@ namespace CSharpSelFramework.Tests
 
         public static IEnumerable<TestCaseData> AddTestDataConfig()
         {
-            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"));
-            yield return new TestCaseData(getDataParser().extractData("username_wrong"), getDataParser().extractData("password_wrong"));
-            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"));
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"), getDataParser().extractDataArray("products"));
+            yield return new TestCaseData(getDataParser().extractData("username_wrong"), getDataParser().extractData("password_wrong"), getDataParser().extractDataArray("products"));
+            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"), getDataParser().extractDataArray("products"));
         }
     }
 }
