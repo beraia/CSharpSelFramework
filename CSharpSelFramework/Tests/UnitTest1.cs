@@ -11,6 +11,8 @@ namespace CSharpSelFramework.Tests
         //[TestCase("rahulshettyacademy", "learning")]
         //[TestCase("rahulshetty", "learning")]
 
+
+        [Parallelizable(ParallelScope.All)]
         public void Test1(string username, string password, String[] expectedProducts)
         {
             //String[] expectedProducts = { "iphone X", "Blackberry" };
@@ -64,7 +66,6 @@ namespace CSharpSelFramework.Tests
         {
             yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"), getDataParser().extractDataArray("products"));
             yield return new TestCaseData(getDataParser().extractData("username_wrong"), getDataParser().extractData("password_wrong"), getDataParser().extractDataArray("products"));
-            yield return new TestCaseData(getDataParser().extractData("username"), getDataParser().extractData("password"), getDataParser().extractDataArray("products"));
         }
     }
 }
